@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(MakeMovableAgain());
                 StartCoroutine(Utility.LerpColorRoutine(GetComponent<SpriteRenderer>(), new Color(1, 1, 1, 1), 2f, false));
-                DeathVFX.Instance.ActivateMothmanEffects();
+                DeathVFX.instance.ActivateMothmanEffects();
             }
         }
 
@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator FadeToCheckpoint()
     {
-        DeathVFX.Instance.Death();
+        DeathVFX.instance.Death();
         DeactivatePushModus();
         canMove = false;
         yield return new WaitForSeconds(2f);

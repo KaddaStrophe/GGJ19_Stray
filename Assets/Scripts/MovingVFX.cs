@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.Experimental.VFX;
-using UnityEngine.VFX.Utils;
+using UnityEngine.VFX;
 
-public class MovingVFX : MonoBehaviour
-{
+public class MovingVFX : MonoBehaviour {
     public VisualEffect visualEffect;
-    private Transform target;
+    Transform target;
 
-    void Start()
-    {
+    protected void Start() {
         target = FindObjectOfType<HomeController>().transform;
     }
 
-    void Update()
-    {
+    protected void Update() {
         visualEffect.SetVector3("TargetPosition", target.position);
         visualEffect.SetBool("InHomeRadius", Vector2.Distance(transform.position, target.position) < 3f);
     }
