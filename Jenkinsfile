@@ -25,7 +25,7 @@ unityPipeline {
     STEAM_CREDENTIALS = ''
     
     // configuration for deploying to itch
-    ITCH_ID = 'stumbleduck/stray'
+    ITCH_ID = 'pixelpete/stray'
 	ITCH_CREDENTIALS = 'Petrichora-itch.io'
 }
 
