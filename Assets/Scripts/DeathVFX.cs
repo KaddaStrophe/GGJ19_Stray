@@ -1,23 +1,26 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
+using UnityEngine.Experimental.VFX;
 
-public class DeathVFX : MonoBehaviour {
-    SpriteRenderer playerSpriteRenderer;
+public class DeathVFX : MonoBehaviour
+{
+    private SpriteRenderer playerSpriteRenderer;
 
-    VisualEffect deathEffect;
-    VisualEffect levelTransitionEffect;
-    VisualEffect mothmanEffect1;
-    VisualEffect mothmanEffect2;
+    private VisualEffect deathEffect;
+    private VisualEffect levelTransitionEffect;
+    private VisualEffect mothmanEffect1;
+    private VisualEffect mothmanEffect2;
 
-    VisualEffect homeRadiusEffect;
+    private VisualEffect homeRadiusEffect;
 
-    public static DeathVFX instance;
+    public static DeathVFX Instance;
 
-    Transform homeTransform;
+    private Transform homeTransform;
 
-    protected void Awake() {
-        instance = this;
+    private void Awake()
+    {
+        Instance = this;
         deathEffect = GetComponent<VisualEffect>();
         mothmanEffect1 = GameObject.Find("Mothman_VFX").GetComponent<VisualEffect>();
         mothmanEffect2 = GameObject.Find("Mothman_VFX_BehindPlayer").GetComponent<VisualEffect>();
@@ -27,31 +30,43 @@ public class DeathVFX : MonoBehaviour {
         playerSpriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
     }
 
-    protected void Update() {
-        if (Input.GetKeyDown(KeyCode.F)) {
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
             StartCoroutine(DeathRoutine());
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             playerSpriteRenderer.color = Color.white;
         }
 
-        if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
             //levelTransitionEffect.SendEvent("OnLevelTransition");
             //  levelTransitionEffect.SetVector3("TargetPosition", Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0f)));
         }
     }
 
-    public void ActivateMothmanEffects() {
+    public void ActivateMothmanEffects()
+    {
         mothmanEffect1.Play();
         mothmanEffect2.Play();
     }
 
-    public void Death() {
+    public void Death()
+    {
         StartCoroutine(DeathRoutine());
     }
 
-    IEnumerator DeathRoutine() {
+    private IEnumerator DeathRoutine()
+    {
         deathEffect.SetVector3("TargetPos", homeTransform.position);
         deathEffect.SetBool("GoToRespawnLocation", false);
         mothmanEffect1.Stop();

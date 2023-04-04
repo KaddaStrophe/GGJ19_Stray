@@ -1,19 +1,23 @@
-﻿using UnityEngine;
-using UnityEngine.VFX;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class HomeRadius : MonoBehaviour {
-    VisualEffect vfx;
-    Transform homeTransform;
+public class HomeRadius : MonoBehaviour
+{
+    private UnityEngine.Experimental.VFX.VisualEffect vfx;
+    private Transform homeTransform;
 
-    protected void Start() {
+    void Start()
+    {
         homeTransform = FindObjectOfType<HomeController>().transform;
-        vfx = GetComponent<VisualEffect>();
+        vfx = GetComponent<UnityEngine.Experimental.VFX.VisualEffect>();
         vfx.SetFloat("Radius", 3.1f);
 
     }
 
     // Update is called once per frame
-    protected void Update() {
+    void Update()
+    {
         vfx.SetVector3("Center", homeTransform.position);
     }
 }
